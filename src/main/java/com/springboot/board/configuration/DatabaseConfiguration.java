@@ -1,5 +1,7 @@
 package com.springboot.board.configuration;
 
+import java.util.Properties;
+
 import javax.sql.DataSource;
 
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -14,9 +16,6 @@ import org.springframework.context.annotation.PropertySource;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
-
-import java.util.Properties;
-
 
 @Configuration
 @PropertySource("classpath:/application.properties")

@@ -16,26 +16,26 @@ import java.util.List;
 
 @Component
 public class FileUtils {
-	
+
 	public List<BoardFileDto> parseFileInfo(int boardIdx, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception{
 		if(ObjectUtils.isEmpty(multipartHttpServletRequest)){
 			return null;
 		}
-		
+
 		List<BoardFileDto> fileList = new ArrayList<>();
-		
-		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyyMMdd"); 
-    	ZonedDateTime current = ZonedDateTime.now();
-    	String path = "images/"+current.format(format);
-    	File file = new File(path);
+
+		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyyMMdd");
+		ZonedDateTime current = ZonedDateTime.now();
+		String path = "images/"+current.format(format);
+		File file = new File(path);
 		if(file.exists() == false){
 			file.mkdirs();
 		}
-		
+
 		Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
-		
+
 		String newFileName, originalFileExtension, contentType;
-		
+
 		while(iterator.hasNext()){
 			List<MultipartFile> list = multipartHttpServletRequest.getFiles(iterator.next());
 			for (MultipartFile multipartFile : list){
@@ -58,7 +58,7 @@ public class FileUtils {
 							break;
 						}
 					}
-					
+
 					newFileName = Long.toString(System.nanoTime()) + originalFileExtension;
 					BoardFileDto boardFile = new BoardFileDto();
 					boardFile.setBoardIdx(boardIdx);
@@ -66,7 +66,7 @@ public class FileUtils {
 					boardFile.setOriginalFileName(multipartFile.getOriginalFilename());
 					boardFile.setStoredFilePath(path + "/" + newFileName);
 					fileList.add(boardFile);
-					
+
 					file = new File(path + "/" + newFileName);
 					multipartFile.transferTo(file);
 				}
@@ -74,26 +74,26 @@ public class FileUtils {
 		}
 		return fileList;
 	}
-	
+
 	public List<BoardFileEntity> parseFileInfo(MultipartHttpServletRequest multipartHttpServletRequest) throws Exception{
 		if(ObjectUtils.isEmpty(multipartHttpServletRequest)){
 			return null;
 		}
-		
+
 		List<BoardFileEntity> fileList = new ArrayList<>();
-		
-		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyyMMdd"); 
-    	ZonedDateTime current = ZonedDateTime.now();
-    	String path = "images/"+current.format(format);
-    	File file = new File(path);
+
+		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyyMMdd");
+		ZonedDateTime current = ZonedDateTime.now();
+		String path = "images/"+current.format(format);
+		File file = new File(path);
 		if(file.exists() == false){
 			file.mkdirs();
 		}
-		
+
 		Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
-		
+
 		String newFileName, originalFileExtension, contentType;
-		
+
 		while(iterator.hasNext()){
 			List<MultipartFile> list = multipartHttpServletRequest.getFiles(iterator.next());
 			for (MultipartFile multipartFile : list){
@@ -116,7 +116,7 @@ public class FileUtils {
 							break;
 						}
 					}
-					
+
 					newFileName = Long.toString(System.nanoTime()) + originalFileExtension;
 					BoardFileEntity boardFile = new BoardFileEntity();
 					boardFile.setFileSize(multipartFile.getSize());
@@ -124,7 +124,7 @@ public class FileUtils {
 					boardFile.setStoredFilePath(path + "/" + newFileName);
 					boardFile.setCreatorId("admin");
 					fileList.add(boardFile);
-					
+
 					file = new File(path + "/" + newFileName);
 					multipartFile.transferTo(file);
 				}

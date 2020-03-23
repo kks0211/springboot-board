@@ -3,9 +3,9 @@ package com.springboot.board.controller;
 import com.springboot.board.dto.BoardDto;
 import com.springboot.board.dto.BoardFileDto;
 import com.springboot.board.service.BoardService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import lombok.RequiredArgsConstructor;
 import org.apache.commons.io.FileUtils;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
@@ -19,10 +19,10 @@ import java.util.List;
 
 
 @Controller
+@RequiredArgsConstructor
 public class RestBoardController {
 
-    @Autowired
-    private BoardService boardService;
+    private final BoardService boardService;
 
     @GetMapping("/board")
     public ModelAndView openBoardList() throws Exception {
