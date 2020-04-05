@@ -4,7 +4,7 @@ import com.springboot.board.common.FileUtils;
 import com.springboot.board.entity.BoardEntity;
 import com.springboot.board.entity.BoardFileEntity;
 import com.springboot.board.repository.JpaBoardRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -13,13 +13,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class JpaBoardServiceImpl implements JpaBoardService {
 
-    @Autowired
-    JpaBoardRepository jpaBoardRepository;
+    private final JpaBoardRepository jpaBoardRepository;
 
-    @Autowired
-    FileUtils fileUtils;
+    private final FileUtils fileUtils;
 
     @Override
     public List<BoardEntity> selectBoardList() throws Exception {

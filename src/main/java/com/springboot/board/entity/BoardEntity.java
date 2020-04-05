@@ -20,7 +20,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name="t_jpa_board")
+//@Table(name="t_jpa_board")
 @NoArgsConstructor
 @Data
 public class BoardEntity {

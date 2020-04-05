@@ -24,17 +24,21 @@ public class RestBoardController {
 
     private final BoardService boardService;
 
-    @GetMapping("/board")
+    //@GetMapping("/board")
+    @GetMapping("/api/board")
     public ModelAndView openBoardList() throws Exception {
-        ModelAndView mv = new ModelAndView("/board/restBoardList");
+        //ModelAndView mv = new ModelAndView("/board/restBoardList");
+        ModelAndView mv = new ModelAndView("/board/api/restBoardApiList");
         List<BoardDto> list = boardService.selectBoardList();
         mv.addObject("list", list);
         return mv;
     }
 
-    @GetMapping("/board/write")
+    //@GetMapping("/board/write")
+    @GetMapping("/api/board/write")
     public String openBoardWrite() throws Exception {
-        return "/board/restBoardWrite";
+        //return "/board/restBoardWrite";
+        return "/board/api/restBoardApiWrite";
     }
 
     @PostMapping("/board/write")
@@ -45,7 +49,8 @@ public class RestBoardController {
 
     @GetMapping("/board/{boardIdx}")
     public ModelAndView openBoardDetail(@PathVariable("boardIdx") int boardIdx, ModelMap model) throws Exception {
-        ModelAndView mv = new ModelAndView("/board/restBoardDetail");
+        //ModelAndView mv = new ModelAndView("/board/restBoardDetail");
+        ModelAndView mv = new ModelAndView("/board/api/restBoardApiDetail");
 
         BoardDto board = boardService.selectBoardDetail(boardIdx);
         mv.addObject("board", board);
