@@ -2,6 +2,7 @@ package com.springboot.board.aop;
 
 import java.util.Collections;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.aop.Advisor;
 import org.springframework.aop.aspectj.AspectJExpressionPointcut;
 import org.springframework.aop.support.DefaultPointcutAdvisor;
@@ -15,13 +16,13 @@ import org.springframework.transaction.interceptor.RuleBasedTransactionAttribute
 import org.springframework.transaction.interceptor.TransactionInterceptor;
 
 @Configuration
+@RequiredArgsConstructor
 public class TransactionAspect {
 	
 	private static final String AOP_TRANSACTION_METHOD_NAME = "*";
 	private static final String AOP_TRANSACTION_EXPRESSION = "execution(* board..service.*Impl.*(..))"; 
 	
-	@Autowired
-	private PlatformTransactionManager transactionManager;
+	private final PlatformTransactionManager transactionManager;
 	
 	@Bean
 	public TransactionInterceptor transactionAdvice(){

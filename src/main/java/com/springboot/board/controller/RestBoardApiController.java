@@ -5,9 +5,6 @@ import com.springboot.board.dto.BoardDto;
 import com.springboot.board.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
-
-import java.util.List;
 
 
 @RestController
